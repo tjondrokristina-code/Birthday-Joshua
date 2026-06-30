@@ -6,10 +6,10 @@
 <title>Happy Birthday Beb Joshua ❤️</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{min-height:100vh;background:radial-gradient(circle at top,#172554,#020617 70%);color:white;overflow:hidden}
+body{min-height:100vh;background:radial-gradient(circle at top,#172554,#020617 75%);color:white;overflow:hidden}
 .page{display:none;min-height:100vh;padding:24px;align-items:center;justify-content:center;text-align:center}
 .active{display:flex}
-.card{width:100%;max-width:430px;background:rgba(255,255,255,.09);border:1px solid rgba(255,215,0,.45);border-radius:30px;padding:28px;box-shadow:0 0 45px rgba(255,215,0,.2)}
+.card{width:100%;max-width:430px;background:rgba(255,255,255,.09);border:1px solid rgba(255,215,0,.45);border-radius:30px;padding:28px;box-shadow:0 0 45px rgba(255,215,0,.22)}
 h1{color:#ffd84d;font-size:34px;margin-bottom:14px}
 h2{margin:12px 0}
 p{line-height:1.7;margin:12px 0}
@@ -26,10 +26,6 @@ img{width:100%;height:320px;object-fit:cover;border-radius:22px;border:2px solid
 </style>
 </head>
 <body>
-
-<audio id="music" loop>
-<source src="assets/music/music.mp3" type="audio/mpeg">
-</audio>
 
 <section id="password" class="page active">
 <div class="card">
@@ -48,8 +44,8 @@ img{width:100%;height:320px;object-fit:cover;border-radius:22px;border:2px solid
 <h1>Happy Birthday 🎉</h1>
 <h2>Beb Joshua ❤️</h2>
 <p>Ada hadiah kecil yang dibuat khusus buat kamu.</p>
-<p>Nyalakan suara ya 🎵</p>
-<button onclick="goBalloon()">Mulai Petualangan 🎈</button>
+<p>Musiknya sudah mulai pelan-pelan 🎵</p>
+<button onclick="show('balloonPage')">Mulai Petualangan 🎈</button>
 </div>
 </section>
 
@@ -100,6 +96,7 @@ img{width:100%;height:320px;object-fit:cover;border-radius:22px;border:2px solid
 <script>
 const pages=["password","intro","balloonPage","gallery","letter","cake","final"];
 let popped=0, photoIndex=1;
+let audioCtx, musicTimer;
 
 function show(id){
 pages.forEach(p=>document.getElementById(p).classList.remove("active"));
@@ -109,7 +106,7 @@ document.getElementById(id).classList.add("active");
 function unlock(){
 let pass=document.getElementById("pass").value;
 if(pass==="211225"){
-document.getElementById("music").play().catch(()=>{});
+startMusic();
 show("intro");
 confetti();
 }else{
@@ -117,8 +114,23 @@ document.getElementById("wrong").style.display="block";
 }
 }
 
-function goBalloon(){
-show("balloonPage");
+function startMusic(){
+if(audioCtx)return;
+audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+const notes=[392,440,523,440,392,330,392,440];
+let i=0;
+musicTimer=setInterval(()=>{
+let osc=audioCtx.createOscillator();
+let gain=audioCtx.createGain();
+osc.type="sine";
+osc.frequency.value=notes[i%notes.length];
+gain.gain.value=0.045;
+osc.connect(gain);
+gain.connect(audioCtx.destination);
+osc.start();
+osc.stop(audioCtx.currentTime+0.45);
+i++;
+},520);
 }
 
 function makeBalloons(){
