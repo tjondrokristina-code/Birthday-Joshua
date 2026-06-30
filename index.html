@@ -1,190 +1,176 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Beb Joshua ❤️</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
-body{min-height:100vh;background:radial-gradient(circle at top,#1b2a4a,#050814 60%,#000);color:white;overflow:hidden}
-.page{display:none;min-height:100vh;padding:28px;align-items:center;justify-content:center;text-align:center}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{min-height:100vh;background:radial-gradient(circle at top,#18213f,#030712 70%);color:white;overflow:hidden}
+.page{display:none;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:25px}
 .active{display:flex}
-.card{width:100%;max-width:430px;background:rgba(255,255,255,.08);border:1px solid rgba(255,215,0,.35);border-radius:28px;padding:28px;backdrop-filter:blur(15px);box-shadow:0 0 40px rgba(255,215,0,.15)}
-h1{color:#ffd76a;font-size:34px;margin-bottom:14px}
-h2{margin-bottom:16px}
-p{line-height:1.7;color:#eee;margin:12px 0}
-button{border:0;border-radius:999px;padding:14px 24px;margin-top:18px;background:linear-gradient(135deg,#ffd76a,#b8872b);font-weight:700;color:#111;font-size:16px;box-shadow:0 0 24px rgba(255,215,0,.25)}
-button:active{transform:scale(.96)}
-.stars:before{content:"";position:fixed;inset:0;background-image:radial-gradient(white 1px,transparent 1px);background-size:80px 80px;opacity:.25;animation:move 60s linear infinite;z-index:-1}
-@keyframes move{to{transform:translateY(-500px)}}
-.balloon{position:absolute;width:55px;height:70px;border-radius:50%;background:#ffd76a;display:flex;align-items:center;justify-content:center;font-size:24px;animation:float 4s infinite alternate;cursor:pointer}
-@keyframes float{to{transform:translateY(-40px)}}
-.gallery img{width:100%;height:320px;object-fit:cover;border-radius:22px;border:2px solid rgba(255,215,0,.4)}
-.small{font-size:14px;opacity:.75}
-.heart{position:fixed;color:#ff5f8f;font-size:24px;animation:rise 3s linear forwards}
+.card{max-width:430px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,215,0,.35);border-radius:28px;padding:30px;box-shadow:0 0 35px rgba(255,215,0,.18)}
+h1{color:#ffd84d;font-size:34px;margin-bottom:15px}
+h2{margin:12px 0}
+p{line-height:1.6;margin:12px 0}
+button{margin-top:18px;padding:15px 28px;border:0;border-radius:40px;background:#ffe25c;color:#111;font-weight:bold;font-size:17px}
+.balloon{position:absolute;font-size:45px;cursor:pointer;animation:float 2s infinite alternate}
+@keyframes float{to{transform:translateY(-25px)}}
+img{width:100%;height:320px;object-fit:cover;border-radius:22px}
+.heart,.confetti{position:fixed;animation:rise 3s linear forwards}
 @keyframes rise{to{transform:translateY(-120vh);opacity:0}}
-.cake{font-size:90px;margin:18px}
-.candle{font-size:50px;cursor:pointer}
-.confetti{position:fixed;width:10px;height:10px;background:#ffd76a;top:-10px;animation:fall 3s linear forwards}
+.confetti{width:10px;height:10px;top:-10px;animation:fall 3s linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
 </style>
 </head>
 <body>
-<div class="stars"></div>
 
 <audio id="music" loop>
-  <source src="assets/music/music.mp3" type="audio/mpeg">
+<source src="assets/music/music.mp3" type="audio/mpeg">
 </audio>
 
-<section class="page active" id="intro">
-  <div class="card">
-    <h1>Happy Birthday</h1>
-    <h2>Beb Joshua ❤️</h2>
-    <p>Ada hadiah kecil yang dibuat khusus buat kamu.</p>
-    <p class="small">Nyalakan suara ya 🎵</p>
-    <button onclick="start()">Open Your Gift 🎁</button>
-  </div>
+<section id="intro" class="page active">
+<div class="card">
+<h1>Happy Birthday</h1>
+<h2>Beb Joshua ❤️</h2>
+<p>Ada hadiah kecil yang dibuat khusus buat kamu.</p>
+<p>Nyalakan suara ya 🎵</p>
+<button onclick="start()">Open Your Gift 🎁</button>
+</div>
 </section>
 
-<section class="page" id="balloonPage">
-  <div class="card">
-    <h1>Level 1 🎈</h1>
-    <p>Pecahkan 10 balon dulu ya!</p>
-    <h2 id="count">0 / 10</h2>
-<button onclick="createBalloons()">Mulai Game 🎈</button>
-  </div>
+<section id="balloon" class="page">
+<div class="card">
+<h1>Level 1 🎈</h1>
+<p>Pecahkan 10 balon dulu ya!</p>
+<h2 id="count">0 / 10</h2>
+<button onclick="makeBalloons()">Mulai Game 🎈</button>
+</div>
 </section>
 
-<section class="page" id="galleryPage">
-  <div class="card gallery">
-    <h1>Our Little Memories 📸</h1>
-    <img id="photo" src="assets/images/photo1.jpg">
-    <p class="small">Klik tombol untuk lihat foto berikutnya</p>
-    <button onclick="nextPhoto()">Next Memory ❤️</button>
-  </div>
+<section id="gallery" class="page">
+<div class="card">
+<h1>Our Memories 📸</h1>
+<img id="photo" src="assets/images/photo1.jpg">
+<button onclick="nextPhoto()">Next Memory ❤️</button>
+</div>
 </section>
 
-<section class="page" id="letterPage">
-  <div class="card">
-    <h1>For You 💌</h1>
-    <p id="letter"></p>
-    <button onclick="showPage('cakePage')">Next 🎂</button>
-  </div>
+<section id="letter" class="page">
+<div class="card">
+<h1>For You 💌</h1>
+<p id="typed"></p>
+<button onclick="show('cake')">Next 🎂</button>
+</div>
 </section>
 
-<section class="page" id="cakePage">
-  <div class="card">
-    <h1>Make a Wish 🎂</h1>
-    <div class="cake">🎂</div>
-    <div class="candle" onclick="finish()">🕯️</div>
-    <p>Klik lilinnya untuk meniup lilin.</p>
-  </div>
+<section id="cake" class="page">
+<div class="card">
+<h1>Make a Wish 🎂</h1>
+<div style="font-size:90px">🎂</div>
+<div style="font-size:60px;cursor:pointer" onclick="finish()">🕯️</div>
+<p>Klik lilinnya ya.</p>
+</div>
 </section>
 
-<section class="page" id="finalPage">
-  <div class="card">
-    <h1>Happy Birthday, Beb Joshua ❤️</h1>
-    <p>Happy birthday sayangku, panjang umur dan sehat selalu.</p>
-    <p>Aku bahagia & <b>BERUNTUNG BANGETTT</b> ketemu kamu beb.</p>
-    <p>Semoga rejeki ayang selalu lancar ya. AMIN.</p>
-    <h2>Love you bebbb ❤️</h2>
-  </div>
+<section id="final" class="page">
+<div class="card">
+<h1>Happy Birthday, Beb Joshua ❤️</h1>
+<p>Happy birthday sayangku, panjang umur dan sehat selalu.</p>
+<p>Aku bahagia & <b>BERUNTUNG BANGETTT</b> ketemu kamu beb.</p>
+<p>Semoga rejeki ayang selalu lancar ya. AMIN.</p>
+<h2>Love you bebbb ❤️</h2>
+</div>
 </section>
 
 <script>
-const pages=["intro","balloonPage","galleryPage","letterPage","cakePage","finalPage"];
-const photos=[
-"assets/images/photo1.jpg",
-"assets/images/photo2.jpg",
-"assets/images/photo3.jpg",
-"assets/images/photo4.jpg",
-"assets/images/photo5.jpg"
-];
+const pages=["intro","balloon","gallery","letter","cake","final"];
+let popped=0;
+let photoIndex=1;
 
-function showPage(id){
-  pages.forEach(p=>document.getElementById(p).classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+function show(id){
+pages.forEach(p=>document.getElementById(p).classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
 
 function start(){
-  document.getElementById("music").play().catch(()=>{});
-  showPage("balloonPage");
-  createBalloons();
+document.getElementById("music").play().catch(()=>{});
+show("balloon");
 }
 
-let popped=0;
-function createBalloons(){
-  popped=0;
-  document.getElementById("count").innerText="0 / 10";
-  for(let i=0;i<10;i++){
-    const b=document.createElement("div");
-    b.className="balloon";
-    b.innerText="🎈";
-    b.style.left=Math.random()*80+5+"vw";
-    b.style.top=Math.random()*65+20+"vh";
-    b.onclick=()=>{
-      b.remove();
-      popped++;
-      document.getElementById("count").innerText=popped+" / 10";
-      makeHeart();
-      if(popped===10){
-        confetti();
-        setTimeout(()=>showPage("galleryPage"),900);
-      }
-    };
-    document.body.appendChild(b);
-  }
+function makeBalloons(){
+document.querySelectorAll(".balloon").forEach(b=>b.remove());
+popped=0;
+document.getElementById("count").innerText="0 / 10";
+
+for(let i=0;i<10;i++){
+let b=document.createElement("div");
+b.className="balloon";
+b.innerText="🎈";
+b.style.left=(Math.random()*80+5)+"vw";
+b.style.top=(Math.random()*65+20)+"vh";
+b.onclick=function(){
+b.remove();
+popped++;
+document.getElementById("count").innerText=popped+" / 10";
+heart();
+if(popped===10){
+confetti();
+setTimeout(()=>show("gallery"),900);
+}
+};
+document.body.appendChild(b);
+}
 }
 
-let photoIndex=0;
 function nextPhoto(){
-  photoIndex++;
-  if(photoIndex>=photos.length){
-    typeLetter();
-    showPage("letterPage");
-  }else{
-    document.getElementById("photo").src=photos[photoIndex];
-  }
+photoIndex++;
+if(photoIndex>5){
+show("letter");
+typeLetter();
+}else{
+document.getElementById("photo").src="assets/images/photo"+photoIndex+".jpg";
+}
 }
 
-const text=`Happy birthday sayangku. Semoga panjang umur, sehat selalu, penuh sukacita, dan selalu diberkati Tuhan dalam setiap langkahmu. Aku benar-benar bahagia dan BERUNTUNG BANGETTT bisa ketemu kamu, Beb Joshua. Semoga rejeki ayang selalu lancar, setiap impianmu tercapai, dan kamu selalu dikelilingi hal-hal baik. Love you bebbb ❤️`;
+let message="Happy birthday sayangku. Semoga panjang umur, sehat selalu, penuh sukacita, dan selalu diberkati Tuhan dalam setiap langkahmu. Aku benar-benar bahagia dan BERUNTUNG BANGETTT bisa ketemu kamu, Beb Joshua. Semoga rejeki ayang selalu lancar ya. AMIN. Love you bebbb ❤️";
 
 function typeLetter(){
-  const el=document.getElementById("letter");
-  el.innerHTML="";
-  let i=0;
-  const typing=setInterval(()=>{
-    el.innerHTML+=text[i];
-    i++;
-    if(i>=text.length)clearInterval(typing);
-  },35);
+let i=0;
+let el=document.getElementById("typed");
+el.innerHTML="";
+let run=setInterval(()=>{
+el.innerHTML+=message[i];
+i++;
+if(i>=message.length)clearInterval(run);
+},35);
 }
 
 function finish(){
-  confetti();
-  setTimeout(()=>showPage("finalPage"),900);
+confetti();
+setTimeout(()=>show("final"),900);
 }
 
-function makeHeart(){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerText="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.bottom="-20px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),3000);
+function heart(){
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.bottom="-20px";
+h.style.fontSize="25px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
 }
 
 function confetti(){
-  for(let i=0;i<80;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.background=["#ffd76a","#ff5f8f","#ffffff","#8fd3ff"][Math.floor(Math.random()*4)];
-    c.style.animationDuration=(Math.random()*2+2)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3500);
-  }
+for(let i=0;i<80;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=["#ffd84d","#ff5f8f","#fff","#7dd3fc"][Math.floor(Math.random()*4)];
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3500);
+}
 }
 </script>
 </body>
