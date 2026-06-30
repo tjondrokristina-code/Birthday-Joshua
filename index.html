@@ -14,6 +14,7 @@ h1{color:#ffd84d;font-size:34px;margin-bottom:15px}
 h2{margin:12px 0}
 p{line-height:1.6;margin:12px 0}
 button{margin-top:18px;padding:15px 28px;border:0;border-radius:40px;background:#ffe25c;color:#111;font-weight:bold;font-size:17px}
+input{width:100%;padding:15px;border-radius:20px;border:1px solid #ffd84d;margin-top:15px;text-align:center;font-size:18px;background:white;color:#111}
 .balloon{position:absolute;font-size:45px;cursor:pointer;animation:float 2s infinite alternate}
 @keyframes float{to{transform:translateY(-25px)}}
 img{width:100%;height:320px;object-fit:cover;border-radius:22px}
@@ -31,11 +32,18 @@ img{width:100%;height:320px;object-fit:cover;border-radius:22px}
 
 <section id="intro" class="page active">
 <div class="card">
-<h1>Happy Birthday</h1>
-<h2>Beb Joshua ❤️</h2>
-<p>Ada hadiah kecil yang dibuat khusus buat kamu.</p>
-<p>Nyalakan suara ya 🎵</p>
-<button onclick="start()">Open Your Gift 🎁</button>
+<h1>🔐 Secret Gift</h1>
+<h2>For Beb Joshua ❤️</h2>
+<p>Masukkan password dulu ya.</p>
+<p>Hint: tanggal spesial kita ✨</p>
+
+<input id="passwordInput" type="password" placeholder="Masukkan password">
+
+<button onclick="checkPassword()">Unlock Gift 🎁</button>
+
+<p id="wrongPass" style="color:#ff8aa0;display:none;">
+Password salah beb 😆 coba ingat tanggal jadian kita.
+</p>
 </div>
 </section>
 
@@ -93,9 +101,14 @@ pages.forEach(p=>document.getElementById(p).classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-function start(){
+function checkPassword(){
+let pass=document.getElementById("passwordInput").value;
+if(pass==="211225"){
 document.getElementById("music").play().catch(()=>{});
 show("balloon");
+}else{
+document.getElementById("wrongPass").style.display="block";
+}
 }
 
 function makeBalloons(){
