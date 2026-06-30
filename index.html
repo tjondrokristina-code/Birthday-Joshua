@@ -6,21 +6,22 @@
 <title>Happy Birthday Beb Joshua ❤️</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{min-height:100vh;background:radial-gradient(circle at top,#18213f,#030712 70%);color:white;overflow:hidden}
-.page{display:none;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:25px}
+body{min-height:100vh;background:radial-gradient(circle at top,#172554,#020617 70%);color:white;overflow:hidden}
+.page{display:none;min-height:100vh;padding:24px;align-items:center;justify-content:center;text-align:center}
 .active{display:flex}
-.card{max-width:430px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,215,0,.35);border-radius:28px;padding:30px;box-shadow:0 0 35px rgba(255,215,0,.18)}
-h1{color:#ffd84d;font-size:34px;margin-bottom:15px}
+.card{width:100%;max-width:430px;background:rgba(255,255,255,.09);border:1px solid rgba(255,215,0,.45);border-radius:30px;padding:28px;box-shadow:0 0 45px rgba(255,215,0,.2)}
+h1{color:#ffd84d;font-size:34px;margin-bottom:14px}
 h2{margin:12px 0}
-p{line-height:1.6;margin:12px 0}
+p{line-height:1.7;margin:12px 0}
 button{margin-top:18px;padding:15px 28px;border:0;border-radius:40px;background:#ffe25c;color:#111;font-weight:bold;font-size:17px}
-input{width:100%;padding:15px;border-radius:20px;border:1px solid #ffd84d;margin-top:15px;text-align:center;font-size:18px;background:white;color:#111}
-.balloon{position:absolute;font-size:45px;cursor:pointer;animation:float 2s infinite alternate}
-@keyframes float{to{transform:translateY(-25px)}}
-img{width:100%;height:320px;object-fit:cover;border-radius:22px}
-.heart,.confetti{position:fixed;animation:rise 3s linear forwards}
+input{width:100%;padding:15px;border-radius:18px;border:1px solid #ffd84d;text-align:center;font-size:18px;margin-top:15px}
+.balloon{position:absolute;font-size:45px;cursor:pointer;animation:float 1.7s infinite alternate}
+@keyframes float{to{transform:translateY(-28px)}}
+img{width:100%;height:320px;object-fit:cover;border-radius:22px;border:2px solid rgba(255,215,0,.4)}
+.star{position:fixed;width:2px;height:2px;background:white;border-radius:50%;opacity:.5}
+.heart{position:fixed;font-size:26px;animation:rise 3s linear forwards}
 @keyframes rise{to{transform:translateY(-120vh);opacity:0}}
-.confetti{width:10px;height:10px;top:-10px;animation:fall 3s linear forwards}
+.confetti{position:fixed;width:10px;height:10px;top:-10px;animation:fall 3s linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
 </style>
 </head>
@@ -30,24 +31,29 @@ img{width:100%;height:320px;object-fit:cover;border-radius:22px}
 <source src="assets/music/music.mp3" type="audio/mpeg">
 </audio>
 
-<section id="intro" class="page active">
+<section id="password" class="page active">
 <div class="card">
 <h1>🔐 Secret Gift</h1>
 <h2>For Beb Joshua ❤️</h2>
 <p>Masukkan password dulu ya.</p>
 <p>Hint: tanggal spesial kita ✨</p>
-
-<input id="passwordInput" type="password" placeholder="Masukkan password">
-
-<button onclick="checkPassword()">Unlock Gift 🎁</button>
-
-<p id="wrongPass" style="color:#ff8aa0;display:none;">
-Password salah beb 😆 coba ingat tanggal jadian kita.
-</p>
+<input id="pass" type="password" placeholder="Password">
+<button onclick="unlock()">Unlock Gift 🎁</button>
+<p id="wrong" style="display:none;color:#ff8aa0">Password salah beb 😆</p>
 </div>
 </section>
 
-<section id="balloon" class="page">
+<section id="intro" class="page">
+<div class="card">
+<h1>Happy Birthday 🎉</h1>
+<h2>Beb Joshua ❤️</h2>
+<p>Ada hadiah kecil yang dibuat khusus buat kamu.</p>
+<p>Nyalakan suara ya 🎵</p>
+<button onclick="goBalloon()">Mulai Petualangan 🎈</button>
+</div>
+</section>
+
+<section id="balloonPage" class="page">
 <div class="card">
 <h1>Level 1 🎈</h1>
 <p>Pecahkan 10 balon dulu ya!</p>
@@ -59,7 +65,7 @@ Password salah beb 😆 coba ingat tanggal jadian kita.
 <section id="gallery" class="page">
 <div class="card">
 <h1>Our Memories 📸</h1>
-<img id="photo" src="assets/images/photo1.jpg">
+<img id="photo" src="assets/images/photo1.jpg" onerror="this.src='assets/image/photo1.jpg'">
 <button onclick="nextPhoto()">Next Memory ❤️</button>
 </div>
 </section>
@@ -92,37 +98,40 @@ Password salah beb 😆 coba ingat tanggal jadian kita.
 </section>
 
 <script>
-const pages=["intro","balloon","gallery","letter","cake","final"];
-let popped=0;
-let photoIndex=1;
+const pages=["password","intro","balloonPage","gallery","letter","cake","final"];
+let popped=0, photoIndex=1;
 
 function show(id){
 pages.forEach(p=>document.getElementById(p).classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-function checkPassword(){
-let pass=document.getElementById("passwordInput").value;
+function unlock(){
+let pass=document.getElementById("pass").value;
 if(pass==="211225"){
 document.getElementById("music").play().catch(()=>{});
-show("balloon");
+show("intro");
+confetti();
 }else{
-document.getElementById("wrongPass").style.display="block";
+document.getElementById("wrong").style.display="block";
 }
+}
+
+function goBalloon(){
+show("balloonPage");
 }
 
 function makeBalloons(){
 document.querySelectorAll(".balloon").forEach(b=>b.remove());
 popped=0;
 document.getElementById("count").innerText="0 / 10";
-
 for(let i=0;i<10;i++){
 let b=document.createElement("div");
 b.className="balloon";
 b.innerText="🎈";
-b.style.left=(Math.random()*80+5)+"vw";
-b.style.top=(Math.random()*65+20)+"vh";
-b.onclick=function(){
+b.style.left=(Math.random()*78+5)+"vw";
+b.style.top=(Math.random()*60+22)+"vh";
+b.onclick=()=>{
 b.remove();
 popped++;
 document.getElementById("count").innerText=popped+" / 10";
@@ -142,15 +151,16 @@ if(photoIndex>5){
 show("letter");
 typeLetter();
 }else{
-document.getElementById("photo").src="assets/images/photo"+photoIndex+".jpg";
+let img=document.getElementById("photo");
+img.src="assets/images/photo"+photoIndex+".jpg";
+img.onerror=function(){this.src="assets/image/photo"+photoIndex+".jpg"};
 }
 }
 
-let message="Happy birthday sayangku. Semoga panjang umur, sehat selalu, penuh sukacita, dan selalu diberkati Tuhan dalam setiap langkahmu. Aku benar-benar bahagia dan BERUNTUNG BANGETTT bisa ketemu kamu, Beb Joshua. Semoga rejeki ayang selalu lancar ya. AMIN. Love you bebbb ❤️";
+const message="Happy birthday sayangku. Semoga panjang umur, sehat selalu, penuh sukacita, dan selalu diberkati Tuhan dalam setiap langkahmu. Aku benar-benar bahagia dan BERUNTUNG BANGETTT bisa ketemu kamu, Beb Joshua. Semoga rejeki ayang selalu lancar ya. AMIN. Love you bebbb ❤️";
 
 function typeLetter(){
-let i=0;
-let el=document.getElementById("typed");
+let i=0, el=document.getElementById("typed");
 el.innerHTML="";
 let run=setInterval(()=>{
 el.innerHTML+=message[i];
@@ -170,20 +180,27 @@ h.className="heart";
 h.innerText="❤️";
 h.style.left=Math.random()*100+"vw";
 h.style.bottom="-20px";
-h.style.fontSize="25px";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),3000);
 }
 
 function confetti(){
-for(let i=0;i<80;i++){
+for(let i=0;i<90;i++){
 let c=document.createElement("div");
 c.className="confetti";
 c.style.left=Math.random()*100+"vw";
-c.style.background=["#ffd84d","#ff5f8f","#fff","#7dd3fc"][Math.floor(Math.random()*4)];
+c.style.background=["#ffd84d","#ff5f8f","#ffffff","#7dd3fc"][Math.floor(Math.random()*4)];
 document.body.appendChild(c);
 setTimeout(()=>c.remove(),3500);
 }
+}
+
+for(let i=0;i<60;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+document.body.appendChild(s);
 }
 </script>
 </body>
