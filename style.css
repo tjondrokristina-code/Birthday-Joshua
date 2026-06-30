@@ -100,3 +100,11 @@ to{
 transform:translateY(-500px);
 }
 }
+
+button{
+transition:.3s;
+}
+
+button:active{
+transform:scale(.95);
+}
