@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Beb Joshua</title>
 
   <style>
@@ -10,12 +10,12 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top, #3b1d52, #13081f 60%, #07030d);
+      background: radial-gradient(circle at top, #4b1d5c, #16051f 60%, #07020b);
       color: white;
       overflow-x: hidden;
     }
@@ -24,66 +24,65 @@
       display: none;
     }
 
-    .login-page,
-    .main-page {
+    .login, .main {
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 25px;
       text-align: center;
     }
 
     .card {
-      width: 100%;
       max-width: 430px;
+      width: 100%;
       padding: 35px 25px;
       border-radius: 28px;
-      background: rgba(255, 255, 255, 0.11);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
 
     h1 {
-      font-size: 2.3rem;
+      font-size: 2.2rem;
       margin-bottom: 12px;
-      background: linear-gradient(90deg, #ffd6ec, #ffe8a3, #ffffff);
+      background: linear-gradient(90deg, #ffd6ec, #ffe18a, #ffffff);
       -webkit-background-clip: text;
       color: transparent;
     }
 
     h2 {
-      color: #ffe8a3;
-      margin-bottom: 10px;
+      color: #ffe18a;
+      margin-bottom: 12px;
     }
 
     p {
       line-height: 1.7;
-      color: #f7eefa;
+      color: #fff0fa;
       margin-bottom: 18px;
     }
 
     input {
       width: 100%;
       padding: 14px;
-      border-radius: 15px;
       border: none;
-      outline: none;
-      margin: 15px 0;
+      border-radius: 15px;
       text-align: center;
       font-size: 1rem;
+      margin: 15px 0;
+      outline: none;
     }
 
     button {
-      border: none;
       padding: 14px 22px;
+      border: none;
       border-radius: 999px;
       background: linear-gradient(135deg, #ff8cc6, #ffd36e);
       color: #2b1234;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(255, 156, 198, 0.35);
+      box-shadow: 0 10px 25px rgba(255,156,198,0.35);
       margin: 7px;
     }
 
@@ -92,9 +91,9 @@
     }
 
     .hero {
-      max-width: 900px;
+      max-width: 850px;
       width: 100%;
-      padding: 30px 18px;
+      padding: 25px 15px;
       text-align: center;
     }
 
@@ -104,18 +103,18 @@
       object-fit: cover;
       border-radius: 50%;
       border: 5px solid #ffd36e;
-      box-shadow: 0 0 35px rgba(255, 211, 110, 0.7);
+      box-shadow: 0 0 35px rgba(255,211,110,0.7);
       margin-bottom: 20px;
     }
 
-    .message-box {
+    .box {
       margin: 25px auto;
       max-width: 650px;
       padding: 25px;
       border-radius: 25px;
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.13);
       backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
     .gallery {
@@ -130,7 +129,7 @@
       height: 180px;
       object-fit: cover;
       border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
     .heart {
@@ -148,9 +147,9 @@
     }
 
     .footer {
-      margin-top: 35px;
-      font-size: 0.9rem;
+      margin-top: 30px;
       opacity: 0.85;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -158,20 +157,22 @@
 <body>
 
   <audio id="musik" loop>
-  <source src="assets/music/lagu.mp3?v=2" type="audio/mpeg">
+    <source src="assets/music/lagu.mp3?v=2" type="audio/mpeg">
   </audio>
 
-  <section id="login" class="login-page">
+  <section id="login" class="login">
     <div class="card">
       <h1>For Beb Joshua 💖</h1>
-      <p>Masukkan password spesial kita dulu yaa ✨</p>
-      <input type="password" id="password" placeholder="Masukkan password" />
+      <p>Masukkan password spesial kita dulu ya ✨</p>
+
+      <input type="password" id="password" placeholder="Masukkan password">
       <button onclick="cekPassword()">Buka Hadiah 🎁</button>
+
       <p id="error" style="color:#ffd6dc;"></p>
     </div>
   </section>
 
-  <section id="main" class="main-page hidden">
+  <section id="main" class="main hidden">
     <div class="hero">
 
       <img src="foto1.jpg" class="photo" alt="Foto Joshua">
@@ -181,17 +182,19 @@
 
       <button onclick="playMusic()">Putar Musik 🎵</button>
 
-      <div class="message-box">
+      <div class="box">
         <p>
           Happy birthday sayangku, panjang umur dan sehat selalu.
           Aku bahagia & beruntung banget ketemu kamu.
           Semoga rejeki ayang selalu lancar. Amin.
         </p>
+
         <p>
           Terima kasih karena sudah hadir dan jadi seseorang yang spesial buat aku.
           Semoga di umur yang baru ini, Tuhan selalu jagai setiap langkahmu,
-          berkati pekerjaanmu, kesehatanmu, dan semua hal baik yang kamu doakan.
+          berkati kesehatanmu, pekerjaanmu, dan semua hal baik yang kamu doakan.
         </p>
+
         <h2>Love you, Beb Joshua 🤍</h2>
       </div>
 
@@ -201,7 +204,7 @@
         <img src="foto3.jpg" alt="Foto 3">
       </div>
 
-      <div class="message-box">
+      <div class="box">
         <h2>Mini Love Note 💌</h2>
         <p>
           Jangan lupa ya, kamu berharga, kamu dikasihi,
@@ -232,6 +235,7 @@
 
     function playMusic() {
       const musik = document.getElementById("musik");
+
       musik.play().catch(() => {
         alert("Klik tombol Putar Musik ya, karena HP kadang blokir autoplay.");
       });
@@ -244,6 +248,7 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = Math.random() * 3 + 3 + "s";
       heart.style.fontSize = Math.random() * 18 + 14 + "px";
+
       document.body.appendChild(heart);
 
       setTimeout(() => {
